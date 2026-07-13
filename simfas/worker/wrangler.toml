@@ -1,0 +1,36 @@
+# Cloudflare Workers — SIMFAS API (Free Tier friendly)
+name = "simfas-api"
+main = "src/index.ts"
+compatibility_date = "2025-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Resolve monorepo shared package
+[alias]
+"@simfas/shared" = "../shared/src/index.ts"
+
+# D1 SQLite edge database
+[[d1_databases]]
+binding = "DB"
+database_name = "simfas-db"
+database_id = "local-simfas-db"
+migrations_dir = "migrations"
+
+# R2 for inspection photos
+[[r2_buckets]]
+binding = "PHOTOS"
+bucket_name = "simfas-photos"
+preview_bucket_name = "simfas-photos"
+
+# KV cache for dashboard aggregates (read-heavy, write-light)
+[[kv_namespaces]]
+binding = "CACHE"
+id = "local-simfas-cache"
+preview_id = "local-simfas-cache"
+
+[vars]
+JWT_ISSUER = "simfas"
+# JWT_SECRET must be set via `wrangler secret put JWT_SECRET` in production
+JWT_SECRET = "simfas-dev-secret-change-in-production"
+
+# CORS — adjust for Cloudflare Pages URL in production
+CORS_ORIGIN = "http://localhost:5173"

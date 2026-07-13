@@ -1,0 +1,23 @@
+{
+  "name": "simfas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "SIMFAS — Sistem Informasi Monitoring Availability Fasilitas Pelabuhan PT Pelindo",
+  "scripts": {
+    "dev": "npm run dev --workspace=web & npm run dev --workspace=worker",
+    "dev:web": "npm run dev --workspace=web",
+    "dev:api": "npm run dev --workspace=worker",
+    "build": "npm run build --workspace=web && npm run build --workspace=worker",
+    "db:migrate": "npm run db:migrate --workspace=worker",
+    "db:seed": "npm run db:seed --workspace=worker",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "workspaces": [
+    "shared",
+    "web",
+    "worker"
+  ],
+  "engines": {
+    "node": ">=20"
+  }
+}

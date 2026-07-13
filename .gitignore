@@ -27,6 +27,8 @@ bun.lock
 .DS_Store
 *.pem
 .cursor
+.claude/
+CLAUDE.md
 
 # debug
 npm-debug.log*
@@ -34,9 +36,17 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# env files / local credentials (never commit)
 .env
 .env*.local
+.dev.vars
+*.key
+*.p12
+credentials.json
+service-account*.json
+
+# Cloudflare / Wrangler local state
+.wrangler/
 
 # vercel
 .vercel
@@ -47,3 +57,4 @@ next-env.d.ts
 
 # build artifacts
 public/r/themes
+dist/
